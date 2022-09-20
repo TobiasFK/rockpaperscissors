@@ -36,20 +36,30 @@
         */
 
         function getComputerChoice() { // get the computer's choice of either Rock, Paper or Scissor, randomly
-            
-            const CHOICES = ["r", "p", "s"];
+            const CHOICES = ["rock", "paper", "scissors"];
             let randomNumber = Math.floor(Math.random() * 3);
             return CHOICES[randomNumber];     
         }
         
         function getPlayerChoice() { // get the player's choice
-            let choice = prompt("Pick Rock (R), Paper (P), Scissors (S");
+            let choice = prompt("Pick Rock (R), Paper (P), Scissors (S"); // asking the user for simple input (one letter) instead of a long word
             choice = choice.toLowerCase();
-            if (choice == "r" || choice == "p" || choice == "s") {
+            if (choice == "r" || choice == "p" || choice == "s") { // check whether a correct choice has been selected ('r', 'p' or 's')
+                switch (choice) { // converting one-letter inputs to appropiate selection
+                    case "r":
+                        choice = "rock"
+                        break
+                    case "p":
+                        choice = "paper"
+                        break
+                    case "s":
+                        choice = "scissors"
+                        break
+                }
                 return choice
             }
             else {
-                alert("Oops, that's not Rock (R), Paper (P) or Scissor (S). Pick again");
+                alert("Oops, that's not Rock (R), Paper (P) or Scissors (S). Pick again"); // if wrong choice has been selected, ask for prompt again
                 getPlayerChoice();
             }
         }
@@ -58,56 +68,52 @@
         function playRound() {
             let playerSelection = getPlayerChoice()
             let computerSelection = getComputerChoice();
-            // win:
-            if (playerSelection == "s" && computerSelection == "p") {
-                console.log("You: SCISSORS | Computer: PAPER - you win!");
-                return true;
-            }
-            else if (playerSelection == "r" && computerSelection == "s") {
-                console.log("You: ROCK | Computer: SCISSORS - you win!");
-                return true;
-            }
-            else if (playerSelection == "p" && computerSelection == "r") {
-                console.log("You: PAPER | Computer: ROCK - you win!");
-                return true;
-            }
-            // lose
-            else if (playerSelection == "r" && computerSelection == "p") {
-                console.log("You: ROCK | Computer: PAPER - you lose!");
-                return false;
-            }
-            else if (playerSelection == "p" && computerSelection == "s") {
-                console.log("You: PAPER | Computer: SCISSORS - you lose!");
-                return false;
-            }
-            else if (playerSelection == "s" && computerSelection == "r") {
-                console.log("You: SCISSORS | Computer: ROCK - you lose!");
-                return false;
-            }
-            // tie
-            else {
+            let roundWinMessage = ""
+            // checks if the round is tie
+            if (playerSelection === computerSelection) {
                 console.log("It's a tie! Try again!");
+                playRound();
+            }
+            // checks if the player wins the round
+            else if (
+                playerSelection === "rock" && computerSelection === "scissors"
+                || playerSelection === "paper" && computerSelection === "rock"
+                || playerSelection === "scissors" && computerSelection === "paper") {
+                    roundWinMessage = "You: " + playerSelection.toUpperCase() + " | Computer: " + computerSelection.toUpperCase() + " >> You WIN this round!"
+                    console.log(roundWinMessage);
+                    return true
+            }
+            // checks if the computer wins the round
+            else if (
+                playerSelection === "rock" && computerSelection === "paper"
+                || playerSelection === "paper" && computerSelection === "scissors"
+                || playerSelection === "scissors" && computerSelection === "rock") {
+                    roundWinMessage = "You: " + playerSelection.toUpperCase() + " | Computer: " + computerSelection.toUpperCase() + " >> You LOSE this round!";
+                    console.log(roundWinMessage);
+            }
+            // if something else went wrong, restart round
+            else {
+                console.log("Something went wrong... Try again");
                 playRound();
             }
         }
 
 
         function game() {
-            let playerWins = 0;
-            let computerWins = 0;
+            let playerWins = 0; // counts the number of player wins
+            let computerWins = 0; // counts the number of computer wins
             for (let i = 1; i <= 5; i++) {
-                let winner = playRound();
+                let winner = playRound(); // stores the result of playround function in variable winner. If variable is true, player wins, if anything else, computer wins
                 if (winner === true) {
                     playerWins += 1;
                 }
                 else {
                     computerWins += 1;
                 }               
-                console.log("Round: " + i);
-                console.log("Player: " + playerWins);
-                console.log("Computer: " + computerWins);
+                let scoreMessage = "Round:" + i + " | Player: " + playerWins + "-" + computerWins + " Computer";
+                console.log(scoreMessage);
             }
-            if (playerWins >= 3) {
+            if (playerWins >= 3) { // checks whether player has three wins total after five rounds
                 console.log("Player wins!");
             }
             else {
