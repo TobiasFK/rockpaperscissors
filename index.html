@@ -26,7 +26,7 @@
             return convertToRealWords(userInput);
         }
 
-        // get the computer's choice of either Rock, Paper or Scissor, randomly
+        // get the computer's choice of either Rock, Paper or Scissors, randomly
         function getComputerChoice() {
             const choices = ["rock", "paper", "scissors"];
             let randomNumber = Math.floor(Math.random() * 3);
@@ -54,7 +54,9 @@
             let userChoice = getUserChoice();
             let computerChoice = getComputerChoice();
             if (userChoice === computerChoice) {
-                console.log(`Player: ${userChoice.toUpperCase(userChoice)} | Computer: ${computerChoice.toUpperCase(computerChoice)} >> It's a tie!`);
+                console.log(`Player  : ${userChoice.toUpperCase()}`);
+                console.log(`Computer: ${computerChoice.toUpperCase()}`);
+                console.log(`>>It's a tie!`);
                 return "tie";
             }
             else if (
@@ -62,11 +64,15 @@
                 || (userChoice === "paper" && computerChoice === "rock")
                 || (userChoice === "rock" && computerChoice === "scissors")
             ) {
-                console.log(`Player: ${userChoice.toUpperCase(userChoice)} | Computer: ${computerChoice.toUpperCase(computerChoice)} >> You WIN this round!`)
+                console.log(`Player  : ${userChoice.toUpperCase()}`);
+                console.log(`Computer: ${computerChoice.toUpperCase()}`);
+                console.log(`>>You WIN this round!`);
                 return "user_win";
             }
             else {
-                console.log(`Player: ${userChoice.toUpperCase(userChoice)} | Computer: ${computerChoice.toUpperCase(computerChoice)} >> You LOSE this round!`);
+                console.log(`Player  : ${userChoice.toUpperCase()}`);
+                console.log(`Computer: ${computerChoice.toUpperCase()}`);
+                console.log(`>>You LOSE this round!`);
                 return "computer_win";
             }
         }
@@ -76,7 +82,7 @@
             let userWins = 0;
             let computerWins = 0;
             let round = 1;
-            console.log("--------------------------------")
+            console.log("--------------------------------");
             console.log("Let's play Rock, Paper, Scissors!");
             while (true) {
                 console.log("--------------------------------");
@@ -94,11 +100,11 @@
                 }
                 console.log(`Player ${userWins} | ${computerWins} Computer`);
                 if (userWins === 3) {
-                    console.log(`>>>>>>YOU WIN!!<<<<<<< (after ${(round)} rounds..)`);
+                    console.log(`>>>>>>YOU WIN!!<<<<<<< (after ${round} rounds..)`);
                     return;
                 }
                 else if (computerWins === 3) {
-                    console.log(`>>>>>>YOU LOOSE!!<<<<<<< (after ${(round)} rounds..)`);
+                    console.log(`>>>>>>YOU LOOSE!!<<<<<<< (after ${round} rounds..)`);
                     return;
                 }
                 else {
