@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissor - Tobias Kjaer</title>
-</head>
-
-<body>
-    <script src="./rockPaperScissors.js"></script>
-    
-    <!-- <script>
         // Rock paper scissors game //
 
         //get User input
@@ -128,9 +114,3 @@
                 }
             }
         }
-
-    </script> -->
-
-</body>
-
-</html>
